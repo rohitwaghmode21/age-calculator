@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <h1>Age Calculator</h1>
+            <div class="main-content">
+                <div>
+                    <label>Date</label>
+                    <input type = "text" minlength="1" maxlength="2" name="date" id="date" placeholder="dd" required>
+                </div>
+                <div>
+                    <label>Month</label>
+                    <input type = "text" minlength="1" maxlength="2" name="month" id="month" placeholder="mm" required>
+                </div>
+                <div>
+                    <label>Year</label>
+                    <input type = "text" minlength="4" maxlength="4" name="year" id="year" placeholder="yy" required>
+                </div>
+            </div>
+            <button name="button" id="button" onclick = "age()">Calculate</button>
+            <div class="result" id="result">
+            </div>
+        </div>
+        
+    </div>
+    
+
+
+    <script>
+        function age () {
+            const d1 = document.getElementById("date").value; // users birth date
+           
+            const m1 = document.getElementById("month").value; // users birth month
+            
+            const y1 = document.getElementById("year").value; // users birth year
+            console.log(d1, m1, y1);
+
+            const date = new Date();
+
+            const d2 = date.getDate();  // get todayes date fronm your sm
+            const m2 = date.getMonth();
+            const y2 = date.getFullYear();
+            console.log(d2, m2, y2);
+
+            const arr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+
+            if(d1 > d2 && m1 < m2 && y1 < y2){
+                const p1 = arr[m1 - 1] - d1;
+                const d = p1 + d2;
+                const m = m2 - m1;
+                const y = y2 - y1;
+
+                document.getElementById("result").innerHTML = `Your age is ${y} years ${m} months and ${d} days`
+            }else if(d2 > d1 && m1 < m2 && y1 < y2){
+                const e = (d2 - d1);
+                const n = (m2 - m1);
+                const z = (y2 - y1);
+
+                document.getElementById("result").innerHTML = `Your age is ${z} years ${n} months and ${e} days`
+            }else if(d1 > d2 && m1 > m2 && y1 < y2){
+                const p2 = (12 - m1);
+                const f = d2;
+                const o = (m2 + p2);
+                const x = (y2 - y1 -1);
+
+                document.getElementById("result").innerHTML = `Your age is ${x} years ${o} months and ${f} days`
+            }else{
+                const p3 = (12 - m1);
+                const g = d2;
+                const p = (m2 + p3);
+                const w = (y2 - y1 - 1);
+
+                document.getElementById("result").innerHTML = `Your age is ${w} years ${p} months and ${g} days`
+            }
+        }
+
+    </script>
+</body>
+</html>
